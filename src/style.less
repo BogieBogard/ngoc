@@ -1,0 +1,136 @@
+.crossword {
+  margin: 1em auto;
+  position: relative;
+  font-family: sans-serif;
+}
+
+.crossword-puzzle {
+}
+.crossword-clues {
+  font-size: 14px;
+}
+.crossword-buttons {
+  clear: both;
+  text-align: center;
+  padding-top: 1em;
+  button {
+    margin: 0 .5em;
+    min-width: 200px;
+  }
+}
+
+table.crossword-grid {
+  width: 100%;
+  max-width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+.grid-row {
+  clear: left;
+}
+.grid-square {
+  position: relative;
+  background-clip: padding-box;
+  &:after {
+    content: '';
+    display: block;
+    margin-top: 100%;
+  }
+  &.active {
+    border: 2px solid black;
+  }
+  &.current-word {
+    background-color: lighten(yellow,30%);
+  }
+  &.correct-across,
+  &.correct-down {
+    background-color: #dff0d8;
+    &.current-word {
+      background-color: multiply(lighten(yellow,30%),#dff0d8);
+    }
+  }
+  .word-label {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    line-height: 1;
+    font-size: ~'calc(10px + .25vw)';
+    color: rgba(0,0,0,.5);
+    pointer-events: none;
+  }
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 1.2em;
+    font-size: ~'calc(10px + .5vw)';
+    font-weight: 600;
+    border: 0;
+    padding: 0;
+    text-transform: uppercase;
+    border-radius: 0;
+    background: transparent;
+  }
+}
+.crossword-clues {
+  li {
+    position: relative;
+    label {
+      display: block;
+      font-weight: normal;
+      cursor: pointer;
+    }
+    &.active {
+      background: lighten(yellow,30%);
+    }
+    &.correct {
+      background: transparent;
+      color: green;
+      text-decoration: line-through;
+      &.active {
+        background: multiply(lighten(yellow,30%),#dff0d8);
+      }
+      label:before {
+        content: "\f00c";
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        position: absolute;
+        left: 0;
+        top: .1em;
+      }
+    }
+  }
+  a.hint {
+    display: none;
+    .show-hints& {
+      display: inline;
+    }
+  }
+}
+.clue-tooltip {
+  position: absolute;
+  z-index: 10;
+  //bottom: 100%;
+  background: rgba(255, 196, 35, 0.9);
+  //color: white;
+  padding: 4px 10px;
+  margin-bottom: 10px;
+  transform: translateY(-100%);
+  max-width: 90vw;
+  .clue-tooltip-arrow {
+    display: block;
+    border: 8px solid transparent;
+    border-top-color: rgba(255, 196, 35, 0.9);
+    border-bottom: none;
+    position: absolute;
+    top: 100%;
+  }
+}
